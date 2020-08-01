@@ -13,7 +13,7 @@ namespace Fasting.Data
             : base(options)
         {
         }
-        public DbSet<Fasting.Models.Rhythm> Rhythm { get; set; }
+        public DbSet<Rhythm> Rhythm { get; set; }
 
     }
 }
