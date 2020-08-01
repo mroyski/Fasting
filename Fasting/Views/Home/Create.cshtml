@@ -19,27 +19,19 @@
             </div>
             <div class="form-group">
                 <label asp-for="StartTime" class="control-label"></label>
-                @*<input asp-for="StartTime" class="form-control" />*@
-                <select asp-for="StartTime">
-                    @* Convert time to am or pm *@
+                <select id="Start" asp-for="StartTime">
                     @for (int i = 1; i < 25; i++)
                     {
-                        if (i < 13)
-                        {
-                            <option value="@DateTime.Today.Hour">@i:00 AM</option>
-                        }
-                        else
-                        {
-                            <option value="@DateTime.Today.Hour">@(i - 12):00 PM</option>
-                        }
+                        <option value="@DateTime.Now.ToString($"MM/dd/yyyy {i}:00")">@i:00</option>
                     })
                 </select>
                 <span asp-validation-for="StartTime" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EndTime" class="control-label"></label>
+                @*<label asp-for="EndTime" class="control-label"></label>
                 <input asp-for="EndTime" class="form-control" />
-                <span asp-validation-for="EndTime" class="text-danger"></span>
+                <span asp-validation-for="EndTime" class="text-danger"></span>*@
+                <input id="End" asp-for="EndTime" type="text" value="" disabled/>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -51,6 +43,13 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+<script>
+    var start = document.getElementById("Start");
+    var startTime = start.value;
+    var date = new Date(Date.parse(startTime));
+    var end = document.getElementById("End");
+    end.value = date.getHours();
+</script>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

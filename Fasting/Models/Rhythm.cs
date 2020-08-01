@@ -15,6 +15,7 @@ namespace Fasting.Models
         [Required]
         [DisplayName("Start Time")]
         public DateTime StartTime { get; set; }
+        [Required]
         [DisplayName("End Time")]
         public DateTime EndTime { get; set; }
     }
