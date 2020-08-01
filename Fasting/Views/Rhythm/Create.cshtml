@@ -14,10 +14,10 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Ratio" class="control-label"></label>
-                <select asp-for="Ratio" class="form-control" >
-                    <option value="16:8">16:8</option>
-                    <option value="18:6">18:6</option>
-                    <option value="20:4">20:4</option>
+                <select id=Ratio asp-for="Ratio" value="16:8" class="form-control" >
+                    <option value="16">16:8</option>
+                    <option value="18">18:6</option>
+                    <option value="20">20:4</option>
                     <option value="36">36</option>
                 </select>
                 <span asp-validation-for="Ratio" class="text-danger"></span>
@@ -25,7 +25,7 @@
             <div class="form-group">
                 <label asp-for="StartTime" class="control-label"></label>
                 <select id="Start" asp-for="StartTime">
-                    @for (int i = 1; i < 25; i++)
+                    @for (int i = 0; i < 25; i++)
                     {
                         <option value="@DateTime.Now.ToString($"MM/dd/yyyy {i}:00")">@i:00</option>
                     })
@@ -65,7 +65,10 @@
         //console.log(finalDate);
     }
 
-    var circadian = 3;
+    let ratio = document.getElementById("Ratio");
+    //let ratioArr = [{Off: 16, On: 8}, {Off: 18, On: 6}, {Off: 20, On: 4}, {Off: 36, On: 0}]
+
+    var circadian = 16;
     var start = document.getElementById("Start");
     var startTime = start.value;
     var date = new Date(Date.parse(startTime));
@@ -80,6 +83,11 @@
         endTime.setHours(endTime.getHours() + circadian);
         endTime.setMonth(endTime.getMonth() + 1);
         end.value = formatEndTime(endTime);
+    });
+
+    ratio.addEventListener('click', e => {
+        circadian = ratio.value;
+        console.log(circadian);
     });
 
 </script>

@@ -12,7 +12,7 @@ namespace Fasting.Models
     {
         public int Id { get; set; }
         [Required]
-        public string Ratio { get; set; }
+        public int Ratio { get; set; }
         [Required]
         [DisplayName("Start Time")]
         public DateTime StartTime { get; set; }
