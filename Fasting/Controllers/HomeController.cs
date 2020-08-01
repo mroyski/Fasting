@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Fasting.Models;
 using Fasting.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Fasting.Controllers
 {
@@ -31,6 +32,7 @@ namespace Fasting.Controllers
             return View();
         }
 
+        [Authorize]
         public IActionResult Create()
         {
             return View();
