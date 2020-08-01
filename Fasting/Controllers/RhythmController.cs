@@ -54,7 +54,7 @@ namespace Fasting.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,StartTime,EndTime")] Rhythm rhythm)
+        public async Task<IActionResult> Create([Bind("Id,Ratio,StartTime,EndTime")] Rhythm rhythm)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace Fasting.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,StartTime,EndTime")] Rhythm rhythm)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Ratio,StartTime,EndTime")] Rhythm rhythm)
         {
             if (id != rhythm.Id)
             {
