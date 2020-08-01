@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Fasting.Models;
 
 namespace Fasting.Data
 {
@@ -12,5 +13,7 @@ namespace Fasting.Data
             : base(options)
         {
         }
+        public DbSet<Fasting.Models.Rhythm> Rhythm { get; set; }
+
     }
 }
