@@ -32,12 +32,6 @@ namespace Fasting.Controllers
             return View();
         }
 
-        [Authorize]
-        public IActionResult Create()
-        {
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
