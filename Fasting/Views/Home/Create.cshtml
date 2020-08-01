@@ -43,26 +43,37 @@
     <a asp-action="Index">Back to List</a>
 </div>
 <script>
+    var circadian = 3;
     var start = document.getElementById("Start");
     var startTime = start.value;
     var date = new Date(Date.parse(startTime));
 
     var end = document.getElementById("End");
-    var endTime = new Date(date.setHours(date.getHours() + 3));
+    var endTime = new Date(date.setHours(date.getHours() + circadian));
     end.value = endTime;
 
     start.addEventListener('change', e => {
         var startTime = start.value;
         var endTime = new Date(Date.parse(startTime));
-        endTime.setHours(endTime.getHours() + 3);
+        endTime.setHours(endTime.getHours() + circadian);
+        endTime.setMonth(endTime.getMonth() + 1);
         end.value = endTime;
 
         var endDate = endTime.getDate();
+        endDate = ("0" + endDate).slice(-2);
         var endMonth = endTime.getMonth();
+        endMonth = ("0" + endMonth).slice(-2);
         var endYear = endTime.getFullYear();
         var endHours = endTime.getHours();
+        endHours = ("0" + endHours).slice(-2);
         var endMinutes = endTime.getMinutes();
-        console.log(`${endMonth + 1}/${endDate}/${endYear} ${endHours}:${endMinutes}`)
+        endMinutes = ("0" + endMinutes).slice(-2);
+        console.log(`${(endMonth)}/${endDate}/${endYear} ${endHours}:${endMinutes}`);
+
+        // Not sure how date will be passed back to input yet
+        var formattedDate = `${(endMonth)}/${endDate}/${endYear} ${endHours}:${endMinutes}`;
+        var finalDate = new Date(Date.parse(formattedDate));
+        console.log(finalDate);
     });
 
 </script>
