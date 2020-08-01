@@ -28,10 +28,9 @@
                 <span asp-validation-for="StartTime" class="text-danger"></span>
             </div>
             <div class="form-group">
-                @*<label asp-for="EndTime" class="control-label"></label>
-                <input asp-for="EndTime" class="form-control" />
-                <span asp-validation-for="EndTime" class="text-danger"></span>*@
-                <input id="End" asp-for="EndTime" type="text" value="" disabled/>
+                <label asp-for="EndTime" class="control-label"></label>
+                <input id="End" asp-for="EndTime" type="text" value="" disabled />
+                <span asp-validation-for="EndTime" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -47,8 +46,25 @@
     var start = document.getElementById("Start");
     var startTime = start.value;
     var date = new Date(Date.parse(startTime));
+
     var end = document.getElementById("End");
-    end.value = date.getHours();
+    var endTime = new Date(date.setHours(date.getHours() + 3));
+    end.value = endTime;
+
+    start.addEventListener('change', e => {
+        var startTime = start.value;
+        var endTime = new Date(Date.parse(startTime));
+        endTime.setHours(endTime.getHours() + 3);
+        end.value = endTime;
+
+        var endDate = endTime.getDate();
+        var endMonth = endTime.getMonth();
+        var endYear = endTime.getFullYear();
+        var endHours = endTime.getHours();
+        var endMinutes = endTime.getMinutes();
+        console.log(`${endMonth + 1}/${endDate}/${endYear} ${endHours}:${endMinutes}`)
+    });
+
 </script>
 
 @section Scripts {
