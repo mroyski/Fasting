@@ -76,9 +76,9 @@
     endTime.setMonth(endTime.getMonth() + 1);
     end.value = formatEndTime(endTime);
 
-    //ratio.addEventListener('click', e => {
-    //    circadian = ratio.value;
-    //})
+    ratio.addEventListener('click', e => {
+        circadian = parseInt(ratio.value);
+    })
 
     start.addEventListener('click', e => {
         var newStart = start.value;
