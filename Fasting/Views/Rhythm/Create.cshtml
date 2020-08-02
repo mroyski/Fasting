@@ -76,11 +76,16 @@
     endTime.setMonth(endTime.getMonth() + 1);
     end.value = formatEndTime(endTime);
 
+    start.addEventListener('click', e => {
+        var newStart = start.value;
+        var endTime = new Date(Date.parse(newStart));
+        endTime.setHours(endTime.getHours() + circadian);
+        endTime.setMonth(endTime.getMonth() + 1);
+        end.value = formatEndTime(endTime);
+    });
+
     ratio.addEventListener('click', e => {
         circadian = parseInt(ratio.value);
-    })
-
-    start.addEventListener('click', e => {
         var newStart = start.value;
         var endTime = new Date(Date.parse(newStart));
         endTime.setHours(endTime.getHours() + circadian);
