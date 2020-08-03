@@ -24,10 +24,17 @@
             </div>
             <div class="form-group">
                 <label asp-for="StartTime" class="control-label"></label>
-                <select id="Start" asp-for="StartTime" value="@Model.StartTime.Hour:00">
+                <select id="Start" asp-for="StartTime">
                     @for (int i = 0; i < 25; i++)
                     {
-                        <option value="@DateTime.Now.ToString($"MM/dd/yyyy {i}:00")">@i:00</option>
+                        if (i == Model.StartTime.Hour)
+                        {
+                            <option value="@DateTime.Now.ToString($"MM/dd/yyyy {i}:00")" selected>@i:00</option>
+                        }
+                        else
+                        {
+                            <option value="@DateTime.Now.ToString($"MM/dd/yyyy {i}:00")">@i:00</option>
+                        }
                     })
                 </select>
                 <span asp-validation-for="StartTime" class="text-danger"></span>
