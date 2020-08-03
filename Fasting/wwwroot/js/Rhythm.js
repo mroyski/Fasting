@@ -11,8 +11,6 @@ let formatEndTime = (endTime) => {
     var endYear = endTime.getFullYear();
     var formattedDate = `${(endMonth)}/${endDate}/${endYear} ${endHours}:${endMinutes}`;
     return formattedDate;
-    var finalDate = new Date(Date.parse(formattedDate));
-    console.log(finalDate);
 }
 
 let ratio = document.getElementById("Ratio");
