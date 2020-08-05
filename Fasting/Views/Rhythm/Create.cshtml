@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Create";
+    var timeTag = "AM";
 }
 
 <h1>Create</h1>
@@ -17,7 +18,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Ratio" class="control-label"></label>
-                <select id=Ratio asp-for="Ratio" value="16" class="form-control" >
+                <select id=Ratio asp-for="Ratio" value="16" class="form-control">
                     <option value="16">16:8</option>
                     <option value="18">18:6</option>
                     <option value="20">20:4</option>
@@ -28,13 +29,18 @@
             <div class="form-group">
                 <label asp-for="StartTime" class="control-label"></label>
                 <select id="Start" asp-for="StartTime">
-                    @for (int i = 0; i < 25; i++)
-                    {
-                        <option value="@DateTime.Now.ToString($"MM/dd/yyyy {i}:00")">@i:00</option>
-                    })
+                    @{
+                        var hourFormat = 0;
+                        for (int i = 0; i < 24; i++)
+                        {
+                            hourFormat = i == 0 ? hourFormat = 12 : i < 13 ? hourFormat = 0 : -12;
+                            timeTag = i > 11 && i != 0 ? timeTag = "PM" : "AM";
+                            <option value="@DateTime.Now.ToString($"MM/dd/yyyy {i}:00 tt")">@($"{hourFormat + i}:00") @timeTag</option>
+                        }
+                    }
                 </select>
-                <span asp-validation-for="StartTime" class="text-danger"></span>
             </div>
+            <p>@DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss tt")</p>
             <div class="form-group">
                 <label asp-for="EndTime" class="control-label"></label>
                 <input id="End" asp-for="EndTime" type="text" value="" readonly />
