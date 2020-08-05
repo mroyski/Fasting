@@ -9,7 +9,13 @@ let formatEndTime = (endTime) => {
     var endMinutes = endTime.getMinutes();
     endMinutes = ("0" + endMinutes).slice(-2);
     var endYear = endTime.getFullYear();
-    var formattedDate = `${(endMonth)}/${endDate}/${endYear} ${endHours}:${endMinutes}`;
+
+    const options = {
+        hour: 'numeric',
+        hour12: true
+    };
+    const time = new Intl.DateTimeFormat('en-US', options).format(endTime);
+    var formattedDate = `${(endMonth)}/${endDate}/${endYear} ${time}`;
     return formattedDate;
 }
 
