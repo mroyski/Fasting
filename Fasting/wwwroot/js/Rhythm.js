@@ -12,6 +12,7 @@ let formatEndTime = (endTime) => {
 
     const options = {
         hour: 'numeric',
+        minute: 'numeric',
         hour12: true
     };
     const time = new Intl.DateTimeFormat('en-US', options).format(endTime);
