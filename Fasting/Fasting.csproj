@@ -8,6 +8,8 @@
   <ItemGroup>
     <Compile Remove="Data\Migrations\20200801220808_Initial-Create.cs" />
     <Compile Remove="Data\Migrations\20200801220808_Initial-Create.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200803212851_InitializeRhythmModel.cs" />
+    <Compile Remove="Data\Migrations\20200803212851_InitializeRhythmModel.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

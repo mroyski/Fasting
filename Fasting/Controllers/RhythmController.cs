@@ -58,6 +58,7 @@ namespace Fasting.Controllers
         {
             if (ModelState.IsValid)
             {
+                rhythm.Achieved = false;
                 _context.Add(rhythm);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
