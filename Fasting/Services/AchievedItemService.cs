@@ -38,5 +38,19 @@ namespace Fasting.Services
             var saveResult = await _context.SaveChangesAsync();
             return saveResult == 1; // One entity should have been updated
         }
+
+        public async Task<bool> MarkNotDoneAsync(int id)
+        {
+            var item = await _context.Rhythm
+                .Where(x => x.Id == id)
+                .SingleOrDefaultAsync();
+
+            if (item == null) return false;
+
+            item.Achieved = false;
+
+            var saveResult = await _context.SaveChangesAsync();
+            return saveResult == 1; // One entity should have been updated
+        }
     }
 }

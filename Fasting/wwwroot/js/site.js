@@ -8,6 +8,9 @@ $(document).ready(function () {
         if ($('.done-checkbox').is(':checked')) {
             markCompleted(e.target);
         }
+        else {
+            markNotCompleted(e.target);
+        }
     });
 });
 
@@ -16,6 +19,16 @@ function markCompleted(checkbox) {
 
     var row = checkbox.closest('tr');
     $(row).addClass('done');
+
+    var form = checkbox.closest('form');
+    form.submit();
+}
+
+function markNotCompleted(checkbox) {
+    checkbox.disabled = true;
+
+    var row = checkbox.closest('tr');
+    $(row).addClass('incomplete');
 
     var form = checkbox.closest('form');
     form.submit();

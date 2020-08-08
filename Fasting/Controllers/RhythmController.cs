@@ -40,7 +40,8 @@ namespace Fasting.Controllers
             var successful = await _achievedItemService.MarkDoneAsync(id);
             if (!successful)
             {
-                return BadRequest("Could not mark item as done.");
+                await _achievedItemService.MarkNotDoneAsync(id);
+                return RedirectToAction("Index");
             }
 
             return RedirectToAction("Index");
