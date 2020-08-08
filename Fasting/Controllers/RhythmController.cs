@@ -25,6 +25,20 @@ namespace Fasting.Controllers
             return View(await _context.Rhythm.ToListAsync());
         }
 
+        [HttpPost]
+        public async Task<IActionResult> EditIndex()
+        {
+            var rhythmList = await _context.Rhythm.ToListAsync();
+            foreach (var item in rhythmList)
+            {
+                item.Achieved = !item.Achieved;
+                _context.Update(item);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToAction("Index");
+        }
+
         // GET: Rhythm/Details/5
         public async Task<IActionResult> Details(int? id)
         {

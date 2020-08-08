@@ -43,10 +43,22 @@
                 @*<input id="AchievedCheck" type="checkbox" value="@item.Achieved" />*@
                 @*<button id="AchievedFast" type="button" class="btn btn-primary" disabled>Save</button>*@
                 @*@Html.DisplayFor(modelItem => item.Achieved)*@
-                <form asp-action="Edit">
+
+                @*<form asp-action="Edit">
                     <input id="AchievedCheck" type="checkbox" asp-for="@item.Achieved" />
                     <input id="AchievedFast" type="submit" asp-for="@item.Achieved" value="Save" class="btn btn-primary" disabled />
                     <span asp-validation-for="@item.Achieved" class="text-danger"></span>
+                </form>*@
+                <form asp-action="EditIndex">
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input id="AchievedCheck" class="form-check-input" asp-for="@item.Achieved" />
+                            @*<input id="AchievedFast" type="submit" asp-for="@item.Achieved" value="Save" class="btn btn-primary" disabled />*@
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <input id="AchievedFast" type="submit" value="Save" class="btn btn-primary" disabled />
+                    </div>
                 </form>
             </td>
             <td>
