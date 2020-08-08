@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Fasting.Services
 {
-    public class AchievedItemService
+    public class AchievedItemService : IAchievedItemService
     {
         private readonly ApplicationDbContext _context;
 
