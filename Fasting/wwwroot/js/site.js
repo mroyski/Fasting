@@ -5,8 +5,9 @@
 $(document).ready(function () {
     // Wire up all of the checkboxes to run markCompleted()
     $('.done-checkbox').on('click', function (e) {
-        markCompleted(e.target);
-        console.log("HIIII");
+        if ($('.done-checkbox').is(':checked')) {
+            markCompleted(e.target);
+        }
     });
 });
 
