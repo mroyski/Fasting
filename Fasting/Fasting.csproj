@@ -8,6 +8,8 @@
   <ItemGroup>
     <Compile Remove="Data\Migrations\20200801220808_Initial-Create.cs" />
     <Compile Remove="Data\Migrations\20200801220808_Initial-Create.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200803212851_InitializeRhythmModel.cs" />
+    <Compile Remove="Data\Migrations\20200803212851_InitializeRhythmModel.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,7 +19,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.6" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
   </ItemGroup>
 
 </Project>

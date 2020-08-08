@@ -7,22 +7,44 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Fasting.Data;
 using Fasting.Models;
+using Fasting.Services;
+using Microsoft.AspNetCore.Localization;
 
 namespace Fasting.Controllers
 {
     public class RhythmController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly AchievedItemService _achievedItemService;
 
-        public RhythmController(ApplicationDbContext context)
+        public RhythmController(ApplicationDbContext context, AchievedItemService achievedItemService)
         {
             _context = context;
+            _achievedItemService = achievedItemService;
         }
 
         // GET: Rhythm
         public async Task<IActionResult> Index()
         {
             return View(await _context.Rhythm.ToListAsync());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> MarkDone(int id)
+        {
+            if (String.IsNullOrEmpty(id.ToString()))
+            {
+                return RedirectToAction("Index");
+            }
+
+            var successful = await _achievedItemService.MarkDoneAsync(id);
+            if (!successful)
+            {
+                await _achievedItemService.MarkNotDoneAsync(id);
+                return RedirectToAction("Index");
+            }
+
+            return RedirectToAction("Index");
         }
 
         // GET: Rhythm/Details/5
@@ -54,7 +76,7 @@ namespace Fasting.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Ratio,StartTime,EndTime")] Rhythm rhythm)
+        public async Task<IActionResult> Create([Bind("Id,Ratio,StartTime,EndTime,Achieved")] Rhythm rhythm)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +108,7 @@ namespace Fasting.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Ratio,StartTime,EndTime")] Rhythm rhythm)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Ratio,StartTime,EndTime,Achieved")] Rhythm rhythm)
         {
             if (id != rhythm.Id)
             {

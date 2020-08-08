@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fasting.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200803212851_InitializeRhythmModel")]
-    partial class InitializeRhythmModel
+    [Migration("20200807011930_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,6 +27,9 @@ namespace Fasting.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Achieved")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("datetime2");

@@ -19,5 +19,6 @@ namespace Fasting.Models
         [Required]
         [DisplayName("End Time")]
         public DateTime EndTime { get; set; }
+        public bool Achieved { get; set; }
     }
 }

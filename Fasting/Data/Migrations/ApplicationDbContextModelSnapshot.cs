@@ -26,6 +26,9 @@ namespace Fasting.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<bool>("Achieved")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("datetime2");
 
