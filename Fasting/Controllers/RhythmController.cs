@@ -7,16 +7,20 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Fasting.Data;
 using Fasting.Models;
+using Fasting.Services;
+using Microsoft.AspNetCore.Localization;
 
 namespace Fasting.Controllers
 {
     public class RhythmController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly AchievedItemService _achievedItemService;
 
-        public RhythmController(ApplicationDbContext context)
+        public RhythmController(ApplicationDbContext context, AchievedItemService achievedItemService)
         {
             _context = context;
+            _achievedItemService = achievedItemService;
         }
 
         // GET: Rhythm
@@ -26,14 +30,17 @@ namespace Fasting.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditIndex()
+        public async Task<IActionResult> MarkDone(int id)
         {
-            var rhythmList = await _context.Rhythm.ToListAsync();
-            foreach (var item in rhythmList)
+            if (String.IsNullOrEmpty(id.ToString()))
             {
-                item.Achieved = !item.Achieved;
-                _context.Update(item);
-                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+
+            var successful = await _achievedItemService.MarkDoneAsync(id);
+            if (!successful)
+            {
+                return BadRequest("Could not mark item as done.");
             }
 
             return RedirectToAction("Index");

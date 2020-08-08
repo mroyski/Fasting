@@ -28,56 +28,33 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ratio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndTime)
-            </td>
-            <td>
-                @*<input id="AchievedCheck" type="checkbox" value="@item.Achieved" />*@
-                @*<button id="AchievedFast" type="button" class="btn btn-primary" disabled>Save</button>*@
-                @*@Html.DisplayFor(modelItem => item.Achieved)*@
-
-                @*<form asp-action="Edit">
-                    <input id="AchievedCheck" type="checkbox" asp-for="@item.Achieved" />
-                    <input id="AchievedFast" type="submit" asp-for="@item.Achieved" value="Save" class="btn btn-primary" disabled />
-                    <span asp-validation-for="@item.Achieved" class="text-danger"></span>
-                </form>*@
-                <form asp-action="EditIndex">
-                    <div class="form-group form-check">
-                        <label class="form-check-label">
-                            <input id="AchievedCheck" class="form-check-input" asp-for="@item.Achieved" />
-                            @*<input id="AchievedFast" type="submit" asp-for="@item.Achieved" value="Save" class="btn btn-primary" disabled />*@
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <input id="AchievedFast" type="submit" value="Save" class="btn btn-primary" disabled />
-                    </div>
-                </form>
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-            <td>
-                @item.Achieved
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ratio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndTime)
+                </td>
+                <td>
+                    <form asp-action="MarkDone" method="POST">
+                        <input type="checkbox" class="done-checkbox" />
+                        <input type="hidden" name="id" value="@item.Id" />
+                    </form>
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+                <td>
+                    @item.Achieved
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
-
-<script>
-    const achieveCheck = document.getElementById("AchievedCheck");
-    const achieveButton = document.getElementById("AchievedFast");
-    achieveCheck.addEventListener('click', e => {
-        achieveButton.disabled = !achieveButton.disabled;
-    });
-</script>
