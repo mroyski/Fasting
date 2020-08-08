@@ -40,14 +40,22 @@
                 @Html.DisplayFor(modelItem => item.EndTime)
             </td>
             <td>
-                <input id="AchievedCheck" type="checkbox" value="@item.Achieved" />
-                <button id="AchievedFast" type="button" class="btn btn-primary" disabled>Save</button>
+                @*<input id="AchievedCheck" type="checkbox" value="@item.Achieved" />*@
+                @*<button id="AchievedFast" type="button" class="btn btn-primary" disabled>Save</button>*@
                 @*@Html.DisplayFor(modelItem => item.Achieved)*@
+                <form asp-action="Edit">
+                    <input id="AchievedCheck" type="checkbox" asp-for="@item.Achieved" />
+                    <input id="AchievedFast" type="submit" asp-for="@item.Achieved" value="Save" class="btn btn-primary" disabled />
+                    <span asp-validation-for="@item.Achieved" class="text-danger"></span>
+                </form>
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+            <td>
+                @item.Achieved
             </td>
         </tr>
 }
