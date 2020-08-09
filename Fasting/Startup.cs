@@ -33,7 +33,7 @@ namespace Fasting
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddScoped<AchievedItemService>();
+            services.AddScoped<IAchievedItemService, AchievedItemService>();
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddMvc();

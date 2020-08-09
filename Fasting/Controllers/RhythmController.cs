@@ -15,9 +15,9 @@ namespace Fasting.Controllers
     public class RhythmController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly AchievedItemService _achievedItemService;
+        private readonly IAchievedItemService _achievedItemService;
 
-        public RhythmController(ApplicationDbContext context, AchievedItemService achievedItemService)
+        public RhythmController(ApplicationDbContext context, IAchievedItemService achievedItemService)
         {
             _context = context;
             _achievedItemService = achievedItemService;
