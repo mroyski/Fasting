@@ -42,7 +42,7 @@ namespace Fasting.Tests
         public void Index_Model_Is_Expected_Model()
         {
             var expectedModel = new List<Rhythm>().GetType();
-            var existingModel = mockContext.Rhythm.ToList<Rhythm>().GetType();
+            var existingModel = mockContext.Rhythm.ToList().GetType();
             Assert.Equal(expectedModel, existingModel);
         }
     }
