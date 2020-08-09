@@ -3,6 +3,9 @@ using Fasting.Data;
 using Fasting.Models;
 using Fasting.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Moq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,12 +16,19 @@ namespace Fasting.Tests
     public class RhythmControllerTests
     {
         RhythmController underTest;
-        ApplicationDbContext context;
-        IAchievedItemService achievedItemService;
+        private ApplicationDbContext mockContext;
+        private IAchievedItemService achievedItemService;
 
         public RhythmControllerTests()
         {
-            underTest = new RhythmController(context, achievedItemService);
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase(Guid.NewGuid().ToString())
+                .Options;
+
+            mockContext = new ApplicationDbContext(options);
+            achievedItemService = new AchievedItemService(mockContext);
+
+            underTest = new RhythmController(mockContext, achievedItemService);
         }
 
         [Fact]
@@ -31,12 +41,9 @@ namespace Fasting.Tests
         [Fact]
         public void Index_Model_Is_Expected_Model()
         {
-            var expectedModel = new List<Rhythm>();
-            var expectedModelType = expectedModel.GetType();
-
-            var expectedType = context.Rhythm.GetType();
-            Assert.Equal(expectedModelType, expectedType);
-            
+            var expectedModel = new List<Rhythm>().GetType();
+            var existingModel = mockContext.Rhythm.ToList<Rhythm>().GetType();
+            Assert.Equal(expectedModel, existingModel);
         }
     }
 }
