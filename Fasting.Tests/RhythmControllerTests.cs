@@ -45,5 +45,17 @@ namespace Fasting.Tests
             var existingModel = mockContext.Rhythm.ToList().GetType();
             Assert.Equal(expectedModel, existingModel);
         }
+
+        [Fact]
+        public void MarkDone_Changes_Achieved_Property()
+        {
+            var newItem = new Rhythm() { Id = 1, Achieved = false };
+            mockContext.Rhythm.Add(newItem);
+            mockContext.SaveChanges();
+
+            var result = (achievedItemService.MarkDoneAsync(newItem.Id)).Result;
+           
+            Assert.True(result);
+        }
     }
 }
