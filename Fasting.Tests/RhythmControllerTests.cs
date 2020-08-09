@@ -47,7 +47,7 @@ namespace Fasting.Tests
         }
 
         [Fact]
-        public void MarkDone_Changes_Achieved_Property()
+        public void MarkDone_Changes_False_Achieved_Property_To_True()
         {
             var newItem = new Rhythm() { Id = 1, Achieved = false };
             mockContext.Rhythm.Add(newItem);
@@ -56,6 +56,18 @@ namespace Fasting.Tests
             var result = (achievedItemService.MarkDoneAsync(newItem.Id)).Result;
            
             Assert.True(result);
+        }
+
+        [Fact]
+        public void MarkDone_Changes_True_Achieved_Property_To_False()
+        {
+            var newItem = new Rhythm() { Id = 1, Achieved = true };
+            mockContext.Rhythm.Add(newItem);
+            mockContext.SaveChanges();
+
+            var result = (achievedItemService.MarkDoneAsync(newItem.Id)).Result;
+
+            Assert.False(result);
         }
     }
 }
