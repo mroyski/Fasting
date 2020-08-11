@@ -156,6 +156,11 @@ namespace Fasting.Controllers
             return View(rhythm);
         }
 
+        public IActionResult Chart()
+        {
+            return View();
+        }
+
         // POST: Rhythm/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
