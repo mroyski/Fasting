@@ -32,17 +32,17 @@ namespace Fasting.ViewComponents
                 responsive: true,
                 data:
                 {
-                    labels: ['Not Completed', 'Completed'],
+                    labels: ['Completed', 'Not Completed'],
                     datasets: [{
-                        label: 'Achievement',
-                        data: [" + $"{notCompleted}, {completed}" + @"],
+                        label: 'Achievement Data',
+                        data: [" + $"{completed}, {notCompleted}" + @"],
                         backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 99, 132, 0.2)'
                             ],
                         borderColor: [
-                        'rgba(255, 99, 132, 1)',
                         'rgba(54, 162, 235, 1)',
+                        'rgba(255, 99, 132, 1)'
                             ],
                         borderWidth: 1
                     }]
