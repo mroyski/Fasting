@@ -35,7 +35,7 @@ namespace Fasting.ViewComponents
                     labels: ['Completed', 'Not Completed'],
                     datasets: [{
                         label: 'Achievement Data',
-                        data: [" + 
+                        data: [" +
                         // The data array populates chartjs fields
                         $"{completed}, {notCompleted}" +
                         @"],
