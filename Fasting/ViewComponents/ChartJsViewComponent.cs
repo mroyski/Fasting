@@ -35,7 +35,10 @@ namespace Fasting.ViewComponents
                     labels: ['Completed', 'Not Completed'],
                     datasets: [{
                         label: 'Achievement Data',
-                        data: [" + $"{completed}, {notCompleted}" + @"],
+                        data: [" + 
+                        // The data array populates chartjs fields
+                        $"{completed}, {notCompleted}" +
+                        @"],
                         backgroundColor: [
                         'rgba(54, 162, 235, 0.2)',
                         'rgba(255, 99, 132, 0.2)'
