@@ -3,8 +3,22 @@
 @{
     ViewData["Title"] = "Index";
     var nowDay = DateTime.Now;
-    bool checkDisabled = false;
-    string bgColor = "";
+
+    @functions{
+        private string TableRowColor(Rhythm rhythm)
+        {
+            var color = "";
+
+            if (rhythm.EndTime < DateTime.Now)
+                color = rhythm.Achieved ? "bg-success" : "bg-warning";
+
+            return color;
+        }
+        private bool CheckDisabled(Rhythm rhythm)
+        {
+            return DateTime.Now < rhythm.EndTime;
+        }
+    }
 }
 
 <p>
@@ -31,11 +45,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            // Disable check boxes
-            { checkDisabled = nowDay < item.StartTime ? true : false; 
-              bgColor = checkDisabled ? "" : "bg-success";
-            }
-            <tr class=@bgColor>
+            <tr class=@TableRowColor(item)>
                 <td>
                     @Html.DisplayFor(modelItem => item.Ratio)
                 </td>
@@ -47,7 +57,7 @@
                 </td>
                 <td>
                     <form asp-action="MarkDone" method="POST">
-                        <input type="checkbox" class="done-checkbox" checked="@item.Achieved" disabled="@checkDisabled" />
+                        <input type="checkbox" class="done-checkbox" checked="@item.Achieved" disabled=@CheckDisabled(item) />
                         <input type="hidden" name="id" value="@item.Id" />
                     </form>
                 </td>
