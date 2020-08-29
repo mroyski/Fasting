@@ -30,17 +30,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            {
-                
-                if (nowDay < item.StartTime)
-                {
-                    checkDisabled = true;
-                }
-                else
-                {
-                    checkDisabled = false;
-                }
-            }
+            { checkDisabled = nowDay < item.StartTime ? true : false; }
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Ratio)
@@ -53,7 +43,7 @@
                 </td>
                 <td>
                     <form asp-action="MarkDone" method="POST">
-                        <input type="checkbox" class="done-checkbox" checked="@item.Achieved" disabled="@checkDisabled"/>
+                        <input type="checkbox" class="done-checkbox" checked="@item.Achieved" disabled="@checkDisabled" />
                         <input type="hidden" name="id" value="@item.Id" />
                     </form>
                 </td>
