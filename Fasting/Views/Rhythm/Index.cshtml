@@ -4,6 +4,8 @@
     ViewData["Title"] = "Index";
     var nowDay = DateTime.Now;
 
+    var sortedRhythmList = Model.OrderBy(x => x.StartTime).ToList();
+
     @functions{
         private string TableRowColor(Rhythm rhythm)
         {
@@ -43,7 +45,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in sortedRhythmList)
         {
             <tr class=@TableRowColor(item)>
                 <td>
