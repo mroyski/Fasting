@@ -76,12 +76,20 @@ namespace Fasting.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Ratio,StartTime,EndTime,Achieved")] Rhythm rhythm)
+        public async Task<IActionResult> Create([Bind("Id,Ratio,StartTime,EndTime,Achieved,Days")] Rhythm rhythm)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(rhythm);
-                await _context.SaveChangesAsync();
+                // Add timers for the amount of days selected
+                for (int i = 0; i < rhythm.Days; i++)
+                {
+                    var r = new Rhythm();
+                    r.Ratio = rhythm.Ratio;
+                    r.StartTime = rhythm.StartTime.AddDays(i);
+                    r.EndTime = rhythm.EndTime.AddDays(i);
+                    _context.Add(r);
+                    await _context.SaveChangesAsync();
+                }
                 return RedirectToAction(nameof(Index));
             }
             return View(rhythm);

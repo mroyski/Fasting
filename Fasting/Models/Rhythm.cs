@@ -20,5 +20,7 @@ namespace Fasting.Models
         [DisplayName("End Time")]
         public DateTime EndTime { get; set; }
         public bool Achieved { get; set; }
+        [Range(1, 30, ErrorMessage = "Value must be between 1 and 30")]
+        public int Days { get; set; }
     }
 }

@@ -10,6 +10,8 @@
     <Compile Remove="Data\Migrations\20200801220808_Initial-Create.Designer.cs" />
     <Compile Remove="Data\Migrations\20200803212851_InitializeRhythmModel.cs" />
     <Compile Remove="Data\Migrations\20200803212851_InitializeRhythmModel.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200807011930_FirstMigration.cs" />
+    <Compile Remove="Data\Migrations\20200807011930_FirstMigration.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
