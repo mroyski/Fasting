@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Fasting.Data.Migrations
 {
-    public partial class FirstMigration : Migration
+    public partial class initialmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,7 +16,8 @@ namespace Fasting.Data.Migrations
                     Ratio = table.Column<int>(nullable: false),
                     StartTime = table.Column<DateTime>(nullable: false),
                     EndTime = table.Column<DateTime>(nullable: false),
-                    Achieved = table.Column<bool>(nullable: false)
+                    Achieved = table.Column<bool>(nullable: false),
+                    Days = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

@@ -29,6 +29,9 @@ namespace Fasting.Data.Migrations
                     b.Property<bool>("Achieved")
                         .HasColumnType("bit");
 
+                    b.Property<int>("Days")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("datetime2");
 
