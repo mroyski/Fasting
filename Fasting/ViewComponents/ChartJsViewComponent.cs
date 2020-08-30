@@ -3,6 +3,7 @@ using Fasting.Models;
 using Fasting.Models.Chart;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -18,7 +19,10 @@ namespace Fasting.ViewComponents
         public ChartJsViewComponent(ApplicationDbContext context)
         {
             _context = context;
-            var completionList = _context.Rhythm.ToList();
+
+            // Only pull timers from context that have not expired yet
+            var completionList = _context.Rhythm.Where(x => x.EndTime < DateTime.Now).ToList();
+
             completed = completionList.Where(x => x.Achieved == true).Count();
             notCompleted = completionList.Where(x => x.Achieved == false).Count();
         }
