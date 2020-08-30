@@ -116,7 +116,7 @@ namespace Fasting.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Ratio,StartTime,EndTime,Achieved")] Rhythm rhythm)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Ratio,StartTime,EndTime,Achieved,Days")] Rhythm rhythm)
         {
             if (id != rhythm.Id)
             {

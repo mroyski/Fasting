@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Edit";
+    var timeTag = "AM";
 }
 
 <h1>Edit</h1>
@@ -24,17 +25,15 @@
             <div class="form-group">
                 <label asp-for="StartTime" class="control-label"></label>
                 <select id="Start" asp-for="StartTime">
-                    @for (int i = 0; i < 25; i++)
-                    {
-                        if (i == Model.StartTime.Hour)
+                    @{
+                        var hourFormat = 0;
+                        for (int i = 0; i < 24; i++)
                         {
-                            <option value="@DateTime.Now.ToString($"MM/dd/yyyy {i}:00")" selected>@i:00</option>
+                            hourFormat = i == 0 ? hourFormat = 12 : i < 13 ? hourFormat = 0 : -12;
+                            timeTag = i > 11 && i != 0 ? timeTag = "PM" : "AM";
+                            <option value="@DateTime.Now.ToString($"MM/dd/yyyy {i}:00")">@($"{hourFormat + i}:00") @timeTag</option>
                         }
-                        else
-                        {
-                            <option value="@DateTime.Now.ToString($"MM/dd/yyyy {i}:00")">@i:00</option>
-                        }
-                    })
+                    }
                 </select>
                 <span asp-validation-for="StartTime" class="text-danger"></span>
             </div>
@@ -42,6 +41,18 @@
                 <label asp-for="EndTime" class="control-label"></label>
                 <input id="End" asp-for="EndTime" type="text" value="" readonly />
                 <span asp-validation-for="EndTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Days" hidden></label>
+                <select asp-for="Days" hidden>
+                    @{
+                        for (int i = 1; i <= 30; i++)
+                        {
+                            <option>@i</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="Days"></span>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
