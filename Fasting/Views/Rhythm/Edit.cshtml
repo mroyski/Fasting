@@ -31,7 +31,7 @@
                         {
                             hourFormat = i == 0 ? hourFormat = 12 : i < 13 ? hourFormat = 0 : -12;
                             timeTag = i > 11 && i != 0 ? timeTag = "PM" : "AM";
-                            <option value="@DateTime.Now.ToString($"MM/dd/yyyy {i}:00")">@($"{hourFormat + i}:00") @timeTag</option>
+                            <option value="@Model.StartTime.ToString($"MM/dd/yyyy {i}:00")">@($"{hourFormat + i}:00") @timeTag</option>
                         }
                     }
                 </select>

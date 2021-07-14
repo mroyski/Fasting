@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
     var nowDay = DateTime.Now;
 
-    var sortedRhythmList = Model.OrderBy(x => x.StartTime).ToList();
+    var sortedRhythmList = Model.OrderByDescending(x => x.StartTime).ToList();
 
     @functions{
         private string TableRowColor(Rhythm rhythm)
